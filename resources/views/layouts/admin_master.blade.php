@@ -3,7 +3,8 @@
     @include('layouts.admin_header')
 
     <body class="sb-nav-fixed">
-
+        <div id="app">
+            
         @include('layouts.admin_navbar')
 
         <div id="layoutSidenav">
@@ -35,7 +36,8 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                @yield('content')
+                {{-- @yield('content') --}}
+                <admin-master></admin-master>
 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -54,6 +56,7 @@
         </div>
 
         @include('layouts.admin_footer')
+        </div>
     </body>
 </html>
 

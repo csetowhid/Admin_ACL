@@ -1,6 +1,6 @@
-@extends('layouts.admin_master')
-@section('content')
-<main>
+<template>
+	<div>
+		<main>
     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
@@ -46,6 +46,11 @@
                         </div>
                     </div>
                 </main>
+	</div>
+</template>
 
+<script>
+	export default{
 
-@endsection
+	}
+</script>
