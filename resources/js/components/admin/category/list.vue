@@ -18,13 +18,15 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Category Name</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
+                                            <tr v-for="(categoryList,index) in getCategoryList" :key = "categoryList.id">
+                                                <td>{{ index+1 }}</td>
+                                                <td>{{ categoryList.cat_name }}</td>
                                                 <td>
                                                     <router-link to="">
                                                         <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
@@ -46,7 +48,20 @@
 </template>
 
 <script>
-	export default{
+export default {
+    name: "List",
 
-	}
+    mounted() {
+        this.$store.dispatch('getCategoryList')
+    },
+    computed:{
+        getCategoryList(){
+            // console.log(this.$store.getters.categoryList);
+            return this.$store.getters.categoryList
+        }
+    },
+    methods:{
+
+    }
+}
 </script>

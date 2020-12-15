@@ -4,7 +4,7 @@
 
     <body class="sb-nav-fixed">
         <div id="app">
-            
+
         @include('layouts.admin_navbar')
 
         <div id="layoutSidenav">
