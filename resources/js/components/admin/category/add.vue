@@ -59,6 +59,10 @@
                     this.form.post('/categorySave')
                         .then((response) => {
                             this.$router.push('/category');
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Category Added successfully'
+                            })
                         })
                     .catch(()=>{
 
