@@ -62,9 +62,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $categoryById = Category::find($id);
+        return response()->json(['categoryById'=>$categoryById],200);
     }
 
     /**
@@ -74,9 +75,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category,$id)
     {
-        //
+        $cat_info = Category::find($id);
+        $cat_info-> cat_name = $request->cat_name;
+        $cat_info->save();
+        return ['status'=>'success'];
+
     }
 
     /**

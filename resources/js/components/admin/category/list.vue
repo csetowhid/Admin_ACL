@@ -28,7 +28,7 @@
                                                 <td>{{ index+1 }}</td>
                                                 <td>{{ categoryList.cat_name }}</td>
                                                 <td>
-                                                    <router-link to="">
+                                                    <router-link :to="`/editcategory/${categoryList.id}`">
                                                         <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                                                     </router-link>
                                                     <router-link to="">
