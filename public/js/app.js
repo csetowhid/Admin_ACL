@@ -2327,19 +2327,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "category add",
   mounted: function mounted() {
@@ -2354,21 +2341,22 @@ __webpack_require__.r(__webpack_exports__);
     return {
       // Create a new form instance
       form: new Form({
+        cat_id: '',
         sub_cat_name: ''
       })
     };
   },
   methods: {
-    categorySave: function categorySave() {
+    subCategorySave: function subCategorySave() {
       var _this = this;
 
       // Submit the form via a POST request
-      this.form.post('/categorySave').then(function (response) {
-        _this.$router.push('/category');
+      this.form.post('/subCategorySave').then(function (response) {
+        _this.$router.push('/subcategory');
 
         Toast.fire({
           icon: 'success',
-          title: 'Category Added successfully'
+          title: 'Sub Category Added successfully'
         });
       })["catch"](function () {});
     }
@@ -2438,12 +2426,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   mounted: function mounted() {
-    this.$store.dispatch('getCategoryList');
+    this.$store.dispatch('getSubCategoryList');
   },
   computed: {
-    getCategoryList: function getCategoryList() {
-      // console.log(this.$store.getters.categoryList);
-      return this.$store.getters.categoryList;
+    getSubCategoryList: function getSubCategoryList() {
+      return this.$store.getters.subCategoryList;
     }
   },
   methods: {
@@ -43228,7 +43215,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
+        _c("th", [_vm._v("#")]),
         _vm._v(" "),
         _c("th", [_vm._v("Category Name")]),
         _vm._v(" "),
@@ -43503,7 +43490,7 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: { form: _vm.form, field: "sub_cat_name" }
+                              attrs: { form: _vm.form, field: "cat_id" }
                             })
                           ],
                           1
@@ -43519,7 +43506,7 @@ var render = function() {
                                 staticClass: "small mb-1",
                                 attrs: { for: "inputEmailAddress" }
                               },
-                              [_vm._v("Category Name")]
+                              [_vm._v("Sub Category Name")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -43527,8 +43514,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.cat_name,
-                                  expression: "form.cat_name"
+                                  value: _vm.form.sub_cat_name,
+                                  expression: "form.sub_cat_name"
                                 }
                               ],
                               staticClass: "form-control py-4",
@@ -43543,7 +43530,7 @@ var render = function() {
                                 placeholder: "Enter Sub Category Name",
                                 name: "sub_cat_name"
                               },
-                              domProps: { value: _vm.form.cat_name },
+                              domProps: { value: _vm.form.sub_cat_name },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -43551,7 +43538,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "cat_name",
+                                    "sub_cat_name",
                                     $event.target.value
                                   )
                                 }
@@ -43617,7 +43604,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group mt-4 mb-0" }, [
         _c("button", { staticClass: "btn btn-primary btn-block" }, [
           _vm._v(
-            "\n                                                        Submit\n                                                    "
+            "\n                                                    Submit\n                                                "
           )
         ])
       ])
@@ -43686,11 +43673,16 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.getCategoryList, function(categoryList, index) {
-                      return _c("tr", { key: categoryList.id }, [
+                    _vm._l(_vm.getSubCategoryList, function(
+                      subCategoryList,
+                      index
+                    ) {
+                      return _c("tr", { key: subCategoryList.id }, [
                         _c("td", [_vm._v(_vm._s(index + 1))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(categoryList.cat_name))]),
+                        _c("td", [
+                          _vm._v(_vm._s(subCategoryList.sub_cat_name))
+                        ]),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -43699,7 +43691,7 @@ var render = function() {
                               "router-link",
                               {
                                 attrs: {
-                                  to: "/editcategory/" + categoryList.id
+                                  to: "/editcategory/" + subCategoryList.id
                                 }
                               },
                               [
@@ -43722,7 +43714,9 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     $event.preventDefault()
-                                    return _vm.categoryDelete(categoryList.id)
+                                    return _vm.categoryDelete(
+                                      subCategoryList.id
+                                    )
                                   }
                                 }
                               },
@@ -43772,7 +43766,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
+        _c("th", [_vm._v("#")]),
         _vm._v(" "),
         _c("th", [_vm._v("Category Name")]),
         _vm._v(" "),
@@ -61048,11 +61042,15 @@ var routes = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    category: []
+    category: [],
+    subCategory: []
   },
   getters: {
     categoryList: function categoryList(state) {
       return state.category;
+    },
+    subCategoryList: function subCategoryList(state) {
+      return state.subCategory;
     }
   },
   actions: {
@@ -61060,11 +61058,19 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/categoryList').then(function (response) {
         context.commit('categoryList', response.data.categoryList);
       });
+    },
+    getSubCategoryList: function getSubCategoryList(context) {
+      axios.get('/subCategoryList').then(function (response) {
+        context.commit('subCategoryList', response.data.subCategoryList);
+      });
     }
   },
   mutations: {
     categoryList: function categoryList(state, responseData) {
       return state.category = responseData;
+    },
+    subCategoryList: function subCategoryList(state, response) {
+      return state.subCategory = response;
     }
   }
 });

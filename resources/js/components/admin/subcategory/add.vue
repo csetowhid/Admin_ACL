@@ -9,31 +9,18 @@
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Add New Sub Category</h3></div>
                                 <div class="card-body">
                                     <form @submit.prevent='subCategorySave'>
-
-<!--                                        <div class="form-group">-->
-<!--                                            <label>Select Category</label>-->
-<!--                                            <select class="form-control" class="form-control py-4" v-model="form.cat_id" type="text" placeholder="Enter Sub Category Name"-->
-<!--                                                    :class="{ 'is-invalid': form.errors.has('cat_id') }" name="cat_id"  id="exampleFormControlSelect1">-->
-<!--                                                <option value="">Select</option>-->
-<!--                                                <option :value="category.id" v-for="category in getCategoryList" :key="category.id">{{category.cat_name}}</option>-->
-<!--                                            </select>-->
-<!--                                            <has-error :form="form" field="sub_cat_name"></has-error>-->
-<!--                                        </div>-->
-
-
-
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Select Category</label>
                                             <select class="form-control" v-model="form.cat_id" type="text" placeholder="Enter Sub Category Name"
                                                     :class="{ 'is-invalid': form.errors.has('cat_id') }" name="cat_id">
                                             <option :value="category.id" v-for="category in getCategoryList" :key="category.id">{{category.cat_name}}</option>
                                             </select>
-                                            <has-error :form="form" field="sub_cat_name"></has-error>
+                                            <has-error :form="form" field="cat_id"></has-error>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Category Name</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" v-model="form.cat_name" type="text" placeholder="Enter Sub Category Name"
+                                            <label class="small mb-1" for="inputEmailAddress">Sub Category Name</label>
+                                            <input class="form-control py-4" id="inputEmailAddress" v-model="form.sub_cat_name" type="text" placeholder="Enter Sub Category Name"
                                                    :class="{ 'is-invalid': form.errors.has('sub_cat_name') }" name="sub_cat_name">
                                             <has-error :form="form" field="sub_cat_name"></has-error>
                                         </div>
@@ -78,6 +65,7 @@ export default{
         return {
             // Create a new form instance
             form: new Form({
+                cat_id: '',
                 sub_cat_name: '',
 
             })
@@ -85,14 +73,14 @@ export default{
     },
 
     methods: {
-        categorySave () {
+        subCategorySave () {
             // Submit the form via a POST request
-            this.form.post('/categorySave')
+            this.form.post('/subCategorySave')
                 .then((response) => {
-                    this.$router.push('/category');
+                    this.$router.push('/subcategory');
                     Toast.fire({
                         icon: 'success',
-                        title: 'Category Added successfully'
+                        title: 'Sub Category Added successfully'
                     })
                 })
                 .catch(()=>{

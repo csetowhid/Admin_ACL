@@ -18,20 +18,20 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Category Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(categoryList,index) in getCategoryList" :key = "categoryList.id">
+                                <tr v-for="(subCategoryList,index) in getSubCategoryList" :key = "subCategoryList.id">
                                     <td>{{ index+1 }}</td>
-                                    <td>{{ categoryList.cat_name }}</td>
+                                    <td>{{ subCategoryList.sub_cat_name }}</td>
                                     <td>
-                                        <router-link :to="`/editcategory/${categoryList.id}`">
+                                        <router-link :to="`/editcategory/${subCategoryList.id}`">
                                             <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                                         </router-link>
-                                        <a href="" @click.prevent="categoryDelete(categoryList.id)">
+                                        <a href="" @click.prevent="categoryDelete(subCategoryList.id)">
                                             <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
                                         </a>
                                     </td>
@@ -52,12 +52,11 @@ export default {
     name: "List",
 
     mounted() {
-        this.$store.dispatch('getCategoryList')
+        this.$store.dispatch('getSubCategoryList')
     },
     computed:{
-        getCategoryList(){
-            // console.log(this.$store.getters.categoryList);
-            return this.$store.getters.categoryList
+        getSubCategoryList(){
+            return this.$store.getters.subCategoryList
         }
     },
     methods:{
