@@ -28,3 +28,4 @@ Route::post('/categorySave', [App\Http\Controllers\CategoryController::class, 's
 Route::get('/categoryList', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
 Route::get('/categoryById/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/categoryUpdate/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+Route::get('/categoryDelete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.destroy');

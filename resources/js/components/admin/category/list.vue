@@ -31,9 +31,9 @@
                                                     <router-link :to="`/editcategory/${categoryList.id}`">
                                                         <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                                                     </router-link>
-                                                    <router-link to="">
+                                                    <a href="" @click.prevent="categoryDelete(categoryList.id)">
                                                         <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-                                                    </router-link>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -61,6 +61,15 @@ export default {
         }
     },
     methods:{
+        categoryDelete(id){
+            axios.get('/categoryDelete/'+id).then((response)=>{
+                this.$store.dispatch('getCategoryList')
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Category Deleted successfully'
+                })
+            })
+        }
 
     }
 }

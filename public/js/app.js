@@ -2189,7 +2189,20 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.categoryList;
     }
   },
-  methods: {}
+  methods: {
+    categoryDelete: function categoryDelete(id) {
+      var _this = this;
+
+      axios.get('/categoryDelete/' + id).then(function (response) {
+        _this.$store.dispatch('getCategoryList');
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Category Deleted successfully'
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42961,16 +42974,29 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("router-link", { attrs: { to: "" } }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-outline-danger btn-sm",
-                                  attrs: { type: "button" }
-                                },
-                                [_vm._v("Delete")]
-                              )
-                            ])
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.categoryDelete(categoryList.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-outline-danger btn-sm",
+                                    attrs: { type: "button" }
+                                  },
+                                  [_vm._v("Delete")]
+                                )
+                              ]
+                            )
                           ],
                           1
                         )
