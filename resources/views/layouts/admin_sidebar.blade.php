@@ -19,6 +19,8 @@
                                     Add Category</router-link>
                                     <router-link to="/category" class="nav-link">
                                     Category List</router-link>
+                                    <router-link to="/subcategory" class="nav-link">
+                                        Sub Category</router-link>
                                 </nav>
                         </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
