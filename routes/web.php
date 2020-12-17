@@ -41,8 +41,12 @@ Route::get('/userById/{id}', [App\Http\Controllers\UserController::class, 'edit'
 Route::post('/userUpdate/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::get('/userDelete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
 
+
 //Role
 Route::get('/roleList', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
+Route::get('/roleById/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
+Route::post('/roleUpdate/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
+
 //Permission
 Route::get('/permissionList', [App\Http\Controllers\RoleController::class, 'getPermission'])->name('role.getPermission');
 Route::post('/roleSave', [App\Http\Controllers\RoleController::class, 'store'])->name('role.store');

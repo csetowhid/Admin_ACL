@@ -99,7 +99,12 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+            $SelectedRoleLength = count($rolePermissions);
+
+            return response()->json(['role'=>$role, 'permission'=>$permission, 
+                'rolePermissions'=>$rolePermissions, 'SelectedRoleLength'=>
+                $SelectedRoleLength],200);
+        // return view('roles.edit',compact('role','permission','rolePermissions'));
     }
 
     /**
@@ -121,9 +126,9 @@ class RoleController extends Controller
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
-
-        return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+        return response()->json(['status'=>'success'],200);
+        // return redirect()->route('roles.index')
+        //                 ->with('success','Role updated successfully');
     }
     /**
      * Remove the specified resource from storage.
