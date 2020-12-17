@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 
-Route::resource('roles', RoleController::class);
-Route::resource('users', UserController::class);
+//Route::resource('roles', RoleController::class);
+//Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class);
 Auth::routes();
 
@@ -33,3 +33,8 @@ Route::get('/categoryDelete/{id}', [App\Http\Controllers\CategoryController::cla
 //Sub Category
 Route::post('/subCategorySave', [App\Http\Controllers\SubCategoryController::class, 'store'])->name('subcategory.store');
 Route::get('/subCategoryList', [App\Http\Controllers\SubCategoryController::class, 'index'])->name('subcategory.index');
+
+//User
+Route::get('/userList', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+//Role
+Route::get('/roleList', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');

@@ -2,6 +2,8 @@ export default {
     state:{
         category:[],
         subCategory:[],
+        user:[],
+        role:[],
     },
     getters:{
         categoryList(state){
@@ -9,6 +11,12 @@ export default {
         },
         subCategoryList(state){
             return state.subCategory
+        },
+        userList(state){
+            return state.user
+        },
+        roleList(state){
+            return state.role
         }
     },
     actions:{
@@ -21,6 +29,16 @@ export default {
             axios.get('/subCategoryList').then((response)=>{
                 context.commit('subCategoryList', response.data.subCategoryList)
             })
+        },
+        getUserList(context){
+            axios.get('/userList').then((response)=>{
+                context.commit('userList', response.data.userList)
+            })
+        },
+        getRoleList(context){
+            axios.get('/roleList').then((response)=>{
+                context.commit('roleList', response.data.roleList)
+            })
         }
     },
     mutations:{
@@ -29,6 +47,12 @@ export default {
         },
         subCategoryList(state, response){
             return state.subCategory = response;
+        },
+        userList(state, response){
+            return state.user = response;
+        },
+        roleList(state, response){
+            return state.role = response;
         }
     }
 
