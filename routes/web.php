@@ -50,3 +50,6 @@ Route::post('/roleUpdate/{id}', [App\Http\Controllers\RoleController::class, 'up
 //Permission
 Route::get('/permissionList', [App\Http\Controllers\RoleController::class, 'getPermission'])->name('role.getPermission');
 Route::post('/roleSave', [App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
+
+
+Route::get('/roleWisePermisionList', [App\Http\Controllers\RoleController::class, 'roleWisePermisionList'])->name('role.roleWisePermisionList');

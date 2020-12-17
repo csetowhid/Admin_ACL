@@ -5,13 +5,16 @@
             <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-header">
-                            <span style="float:left;"><i class="fas fa-table mr-1"></i>
-                                Role List</span>
-                        <span style="float:right;">
-                                <router-link to="/addRole">
-                                    <button type="button" class="btn btn-outline-success btn-sm">Add Role</button>
-                                </router-link>
-                            </span>
+        <span style="float:left;"><i class="fas fa-table mr-1"></i>Role List</span>
+
+<span style="float:right;" v-for="checkPermission in getRoleWisePermisionList" :key="checkPermission.id">
+
+            <span v-if="checkPermission.name=='role-create'">
+                 <router-link to="/addRole">
+            <button type="button" class="btn btn-outline-success btn-sm">Add Role</button>
+            </router-link>
+            </span>
+        </span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -53,10 +56,14 @@ export default {
 
     mounted() {
         this.$store.dispatch('getRoleList')
+        this.$store.dispatch('getRoleWisePermisionList')
     },
     computed:{
         getRoleList(){
             return this.$store.getters.roleList
+        },
+        getRoleWisePermisionList(){
+            return this.$store.getters.roleWisePermisionList
         }
     },
     methods:{

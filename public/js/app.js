@@ -2603,14 +2603,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   mounted: function mounted() {
     this.$store.dispatch('getRoleList');
+    this.$store.dispatch('getRoleWisePermisionList');
   },
   computed: {
     getRoleList: function getRoleList() {
       return this.$store.getters.roleList;
+    },
+    getRoleWisePermisionList: function getRoleWisePermisionList() {
+      return this.$store.getters.roleWisePermisionList;
     }
   },
   methods: {
@@ -44739,27 +44746,41 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card mb-4" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticStyle: { float: "right" } },
-              [
-                _c("router-link", { attrs: { to: "/addRole" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-success btn-sm",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Add Role")]
-                  )
-                ])
-              ],
-              1
-            )
-          ]),
+          _c(
+            "div",
+            { staticClass: "card-header" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.getRoleWisePermisionList, function(checkPermission) {
+                return _c(
+                  "span",
+                  { key: checkPermission.id, staticStyle: { float: "right" } },
+                  [
+                    checkPermission.name == "role-create"
+                      ? _c(
+                          "span",
+                          [
+                            _c("router-link", { attrs: { to: "/addRole" } }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-success btn-sm",
+                                  attrs: { type: "button" }
+                                },
+                                [_vm._v("Add Role")]
+                              )
+                            ])
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]
+                )
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "table-responsive" }, [
@@ -44847,7 +44868,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticStyle: { float: "left" } }, [
       _c("i", { staticClass: "fas fa-table mr-1" }),
-      _vm._v("\n                            Role List")
+      _vm._v("Role List")
     ])
   },
   function() {
@@ -63937,7 +63958,8 @@ __webpack_require__.r(__webpack_exports__);
     subCategory: [],
     user: [],
     role: [],
-    permission: []
+    permission: [],
+    roleWisePermision: []
   },
   getters: {
     categoryList: function categoryList(state) {
@@ -63954,6 +63976,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     permissionList: function permissionList(state) {
       return state.permission;
+    },
+    roleWisePermisionList: function roleWisePermisionList(state) {
+      return state.roleWisePermision;
     }
   },
   actions: {
@@ -63981,6 +64006,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/permissionList').then(function (response) {
         context.commit('permissionList', response.data.permissionList);
       });
+    },
+    getRoleWisePermisionList: function getRoleWisePermisionList(context) {
+      axios.get('/roleWisePermisionList').then(function (response) {
+        context.commit('roleWisePermisionList', response.data.roleWisePermisionList);
+      });
     }
   },
   mutations: {
@@ -63998,6 +64028,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     permissionList: function permissionList(state, response) {
       return state.permission = response;
+    },
+    roleWisePermisionList: function roleWisePermisionList(state, response) {
+      return state.roleWisePermision = response;
     }
   }
 });

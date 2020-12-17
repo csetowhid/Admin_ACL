@@ -5,6 +5,7 @@ export default {
         user:[],
         role:[],
         permission:[],
+        roleWisePermision:[],
     },
     getters:{
         categoryList(state){
@@ -21,6 +22,9 @@ export default {
         },
         permissionList(state){
             return state.permission
+        },
+        roleWisePermisionList(state){
+            return state.roleWisePermision
         }
     },
     actions:{
@@ -48,6 +52,11 @@ export default {
             axios.get('/permissionList').then((response)=>{
                 context.commit('permissionList', response.data.permissionList)
             })
+        },
+        getRoleWisePermisionList(context){
+            axios.get('/roleWisePermisionList').then((response)=>{
+                context.commit('roleWisePermisionList', response.data.roleWisePermisionList)
+            })
         }
     },
     mutations:{
@@ -65,6 +74,9 @@ export default {
         },
         permissionList(state, response){
             return state.permission = response;
+        },
+        roleWisePermisionList(state, response){
+            return state.roleWisePermision = response;
         },
     }
 

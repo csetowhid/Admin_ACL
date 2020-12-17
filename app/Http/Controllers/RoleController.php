@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
@@ -101,7 +102,7 @@ class RoleController extends Controller
 
             $SelectedRoleLength = count($rolePermissions);
 
-            return response()->json(['role'=>$role, 'permission'=>$permission, 
+            return response()->json(['role'=>$role, 'permission'=>$permission,
                 'rolePermissions'=>$rolePermissions, 'SelectedRoleLength'=>
                 $SelectedRoleLength],200);
         // return view('roles.edit',compact('role','permission','rolePermissions'));
@@ -146,5 +147,16 @@ class RoleController extends Controller
     {
         $permissionList = Permission::orderBy('id','ASC')->get();
         return response()->json(['permissionList'=>$permissionList],200);
+    }
+    public function roleWisePermisionList()
+    {
+        $id = Auth::user()->id;
+        $roleWisePermisionList = DB::table('model_has_roles')
+            ->join('role_has_permissions','model_has_roles.role_id', '=','role_has_permissions.role_id')
+            ->join('permissions','role_has_permissions.permission_id', '=','permissions.id')
+            ->select('permissions.name','permissions.id')
+            ->where('model_has_roles.model_id',$id)
+            ->get();
+        return response()->json(['roleWisePermisionList'=>$roleWisePermisionList],200);
     }
 }

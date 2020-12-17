@@ -5,8 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/role/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/role/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/role/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/role/list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -193,6 +193,7 @@
       <workItem from="1608177192926" duration="9634000" />
       <workItem from="1608194516329" duration="1856000" />
       <workItem from="1608216400068" duration="1837000" />
+      <workItem from="1608222156247" duration="3929000" />
     </task>
     <servers />
   </component>

@@ -19,10 +19,12 @@
                                     Add Category</router-link>
                                     <router-link to="/category" class="nav-link">
                                     Category List</router-link>
+
                                     @can('subCategory-list')
                                     <router-link to="/subcategory" class="nav-link">
                                         Sub Category</router-link>
                                     @endcan
+                                    
                                 </nav>
                         </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
