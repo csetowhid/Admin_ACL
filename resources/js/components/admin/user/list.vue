@@ -32,10 +32,10 @@
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.role_name }}</td>
                                     <td>
-                                        <router-link :to="`/editcategory/${user.id}`">
+                                        <router-link :to="`/editUser/${user.id}`">
                                             <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                                         </router-link>
-                                        <a href="" @click.prevent="categoryDelete(user.id)">
+                                        <a href="" @click.prevent="userDelete(user.id)">
                                             <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
                                         </a>
                                     </td>
@@ -64,15 +64,15 @@ export default {
         }
     },
     methods:{
-        // categoryDelete(id){
-        //     axios.get('/categoryDelete/'+id).then((response)=>{
-        //         this.$store.dispatch('getCategoryList')
-        //         Toast.fire({
-        //             icon: 'success',
-        //             title: 'Category Deleted successfully'
-        //         })
-        //     })
-        // }
+        userDelete(id){
+            axios.get('/userDelete/'+id).then((response)=>{
+                this.$store.dispatch('getUserList')
+                Toast.fire({
+                    icon: 'success',
+                    title: 'User Deleted successfully'
+                })
+            })
+        }
 
     }
 }

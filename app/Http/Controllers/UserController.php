@@ -87,11 +87,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        // $user = User::find($id);
+        // $roles = Role::pluck('name','name')->all();
+        // $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        // return view('users.edit',compact('user','roles','userRole'));
+        $userById = DB::table('users')
+            ->join('model_has_roles','users.id', '=','model_has_roles.model_id')
+            ->join('roles','model_has_roles.role_id', '=','roles.id')
+            ->select('users.*','roles.id as roles')
+            ->where('users.id',$id)
+            ->first();
+        return response()->json(['userById'=>$userById],200);
     }
 
     /**
@@ -106,7 +113,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'password' => 'same:cpassword',
             'roles' => 'required'
         ]);
 
@@ -114,6 +121,7 @@ class UserController extends Controller
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
+            // unset($input['password']);
             $input = Arr::except($input,array('password'));
         }
 
@@ -122,9 +130,9 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
-
-        return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+        return response()->json(['status'=>'success'],200);
+        // return redirect()->route('users.index')
+        //                 ->with('success','User updated successfully');
     }
 
     /**
@@ -136,7 +144,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+        // return redirect()->route('users.index')
+        //                 ->with('success','User deleted successfully');
+        return response()->json(['status'=>'success'],200);
     }
 }

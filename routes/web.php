@@ -37,7 +37,9 @@ Route::get('/subCategoryList', [App\Http\Controllers\SubCategoryController::clas
 //User
 Route::get('/userList', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
 Route::post('/userSave', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
-
+Route::get('/userById/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+Route::post('/userUpdate/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::get('/userDelete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
 
 //Role
 Route::get('/roleList', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
