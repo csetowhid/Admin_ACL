@@ -53,7 +53,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|same:cpassword',
             'roles' => 'required'
         ]);
 
@@ -62,9 +62,9 @@ class UserController extends Controller
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+        return response()->json(['status'=>'success'],200);
+        // return redirect()->route('users.index')
+        //                 ->with('success','User created successfully');
     }
 
     /**
