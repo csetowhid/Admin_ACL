@@ -42,7 +42,7 @@
 
 <script>
 	export default{
-	    name: "category add",
+	    name: "save",
             data () {
                 return {
                     // Create a new form instance

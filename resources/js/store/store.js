@@ -4,6 +4,7 @@ export default {
         subCategory:[],
         user:[],
         role:[],
+        permission:[],
     },
     getters:{
         categoryList(state){
@@ -17,6 +18,9 @@ export default {
         },
         roleList(state){
             return state.role
+        },
+        permissionList(state){
+            return state.permission
         }
     },
     actions:{
@@ -39,6 +43,11 @@ export default {
             axios.get('/roleList').then((response)=>{
                 context.commit('roleList', response.data.roleList)
             })
+        },
+        getPermissionList(context){
+            axios.get('/permissionList').then((response)=>{
+                context.commit('permissionList', response.data.permissionList)
+            })
         }
     },
     mutations:{
@@ -53,7 +62,10 @@ export default {
         },
         roleList(state, response){
             return state.role = response;
-        }
+        },
+        permissionList(state, response){
+            return state.permission = response;
+        },
     }
 
 }

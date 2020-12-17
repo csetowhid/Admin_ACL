@@ -38,3 +38,6 @@ Route::get('/subCategoryList', [App\Http\Controllers\SubCategoryController::clas
 Route::get('/userList', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
 //Role
 Route::get('/roleList', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
+//Permission
+Route::get('/permissionList', [App\Http\Controllers\RoleController::class, 'getPermission'])->name('role.getPermission');
+Route::post('/roleSave', [App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
